@@ -1,0 +1,26 @@
+{
+  "name": "iogami/konzole",
+  "description": "Test task for a developer interview",
+  "type": "library",
+  "require": {
+    "php": ">=7.4"
+  },
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Andrei",
+      "email": "andrei.skyweb@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Konzole\\": "src/Konzole/",
+      "Konzole\\InputOutput\\": "src/Konzole/InputOutput"
+    },
+    "files": [
+      "src/Konzole/Konzole.php",
+      "src/Konzole/InputOutput/InputOutput.php"
+    ]
+  }
+}
