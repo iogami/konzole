@@ -2,7 +2,9 @@
 
 namespace Konzole\InputOutput;
 
-class InputOutput
+use Konzole\InputOutput\Output;
+
+class Input
 {
     private const PARAM_SYNTAXES = [
         '/^\{([\w+-],?)+[\w+-]\}$/',
@@ -31,14 +33,12 @@ class InputOutput
         try {
             $this->command = array_shift($params);
         } catch (\TypeError $e) {
-            $this->outputError('You must pass the command as the first parameter.');
-            die();
+            Output::output('You must pass the command as the first parameter.', Output::COLOR_ERROR, true);
         }
 
         foreach ($params as $param) {
             if (!$this->isParamValid($param)) {
-                $this->outputError("Parameter $param has wrong syntax.");
-                die();
+                Output::output("Parameter $param has wrong syntax.", Output::COLOR_ERROR, true);
             }
 
             $param = str_replace(['[', ']', '{', '}'], '', $param);
@@ -48,9 +48,6 @@ class InputOutput
                 $this->params[$key] = $values;
             }
         }
-
-        $this->output($this->command);
-        $this->output($this->params);
     }
 
     private function getKeysValues(string $param): array
@@ -96,23 +93,13 @@ class InputOutput
         return $this->params;
     }
 
-    public function output($output, int $level = 0): void
+    /**
+     * Check if param was passed
+     * @param string $paramName parameter being searched for
+     * @return bool
+     */
+    public function hasParam(string $paramName): bool
     {
-        if (is_array($output)) {
-            foreach ($output as $item) {
-                $this->output($item, $level + 1);
-            }
-        } else {
-            if ($level > 1) {
-                $output = str_repeat('  ', $level) . '- ' . $output;
-            }
-
-            echo $output . PHP_EOL;
-        }
-    }
-
-    public function outputError(string $text): void
-    {
-        $this->output("\033[91m" . $text . "\033[0m");
+        return array_key_exists($paramName, $this->params);
     }
 }
