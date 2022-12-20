@@ -30,7 +30,7 @@ class Router
         }
 
         foreach ($scriptsIterator as $fileName) {
-            $this->commands[$this->fromCamelCase($fileName[1])] = [
+            $this->commands[$this->toSnakeCase($fileName[1])] = [
                 'class' => $fileName[1],
                 'file'  => $fileName[0]
             ];
@@ -75,11 +75,11 @@ class Router
     }
 
     /**
-     * converts string from CamelCase to kebab-case
+     * converts string from CamelCase to snake_case
      * @param string $path
      * @return string
      */
-    private function fromCamelCase(string $text): string
+    private function toSnakeCase(string $text): string
     {
         $text = preg_replace('/(?<!^)([A-Z])/', '_$1', $text);
 
