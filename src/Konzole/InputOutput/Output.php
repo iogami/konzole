@@ -4,8 +4,14 @@ namespace Konzole\InputOutput;
 
 class Output
 {
+    /**
+     * @var int color constant for error text (red)
+     */
     public const COLOR_ERROR = 91;
 
+    /**
+     * @var int color constant for warning text (yellow)
+     */
     public const COLOR_WARNING = 93;
 
     /**

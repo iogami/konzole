@@ -38,7 +38,7 @@ composer require iogami/konzole
 
 ### Пример работы конечной команды
 ```console
-$/usr/bin/php app.php command_name {verbose,overwrite} [log_file=app.log] {unlimited} [methods={create,update,delete}] [paginate=50] {log}
+$/usr/bin/php app.php show_params {verbose,overwrite} [log_file=app.log] {unlimited} [methods={create,update,delete}] [paginate=50] {log}
 
 Called command: command_name
 

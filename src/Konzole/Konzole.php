@@ -7,8 +7,14 @@ use Konzole\InputOutput\Output;
 
 class Konzole
 {
+    /**
+     * @var Input stores instance of Input class
+     */
     private Input $input;
 
+    /**
+     * @var Router stores instance of Router class
+     */
     private Router $router;
 
     /**

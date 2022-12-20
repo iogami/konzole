@@ -6,6 +6,9 @@ use Konzole\InputOutput\Output;
 
 class Input
 {
+    /**
+     * @var array list of regexes for params validation
+     */
     private const PARAM_SYNTAXES = [
         '/^\{([\w+-],?)+[\w+-]\}$/',
         '/^\[\w+=[^,]\{?([\w+.-],?)*[\w+.-]\}?\]$/'
@@ -28,6 +31,11 @@ class Input
         $this->parseParams(array_slice($argv, 1));
     }
 
+    /**
+     * Parse params into associative array
+     * @param array $params params passed from CLI
+     * @return void
+     */
     private function parseParams(array $params): void
     {
         try {
@@ -50,6 +58,11 @@ class Input
         }
     }
 
+    /**
+     * Parses single param into the form of paramName => paramValues
+     * @param string $param Single parameter in the form of a string
+     * @return array
+     */
     private function getKeysValues(string $param): array
     {
         $key = null;
@@ -72,6 +85,11 @@ class Input
         return [$key, $param];
     }
 
+    /**
+     * Check if param has valid syntax
+     * @param string $param Single parameter in the form of a string
+     * @return bool
+     */
     private function isParamValid(string $param): bool
     {
         $valid = false;
@@ -83,11 +101,20 @@ class Input
         return $valid;
     }
 
+
+    /**
+     * Retrieve passed command
+     * @return string
+     */
     public function getCommand(): string
     {
         return $this->command;
     }
 
+    /**
+     * Retrieve list of passed params
+     * @return array
+     */
     public function getParams(): array
     {
         return $this->params;

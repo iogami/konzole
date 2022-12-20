@@ -57,6 +57,7 @@ class Router
     }
 
     /**
+     * Return the full path (and filename) that stores the code of the invoked command
      * @return string
      */
     public function getFile(): string
@@ -65,6 +66,7 @@ class Router
     }
 
     /**
+     * Return the classname (and namespace) of class that stores the invoked command
      * @return string
      */
     public function getClassName(): string
