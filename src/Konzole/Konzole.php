@@ -33,26 +33,6 @@ class Konzole
     }
 
     /**
-     * Gets path script which called this class
-     * @return string|null
-     */
-    private function getCallingFilePath(): ?string
-    {
-        $trace = debug_backtrace();
-        $file = null;
-
-        for ($i = 1; $i < count($trace); $i++) {
-            if (isset($trace[$i]) && isset($trace[$i]['file'])) {
-                if ($file !== $trace[$i]['file']) {
-                    $file = $trace[$i]['file'];
-                }
-            }
-        }
-
-        return $file;
-    }
-
-    /**
      * Execute command
      * @return void
      */
@@ -78,5 +58,25 @@ class Konzole
         } catch (\Exception $e) {
             Output::output($e->getMessage(), Output::COLOR_ERROR);
         }
+    }
+
+    /**
+     * Gets path script which called this class
+     * @return string|null
+     */
+    private function getCallingFilePath(): ?string
+    {
+        $trace = debug_backtrace();
+        $file = null;
+
+        for ($i = 1; $i < count($trace); $i++) {
+            if (isset($trace[$i]) && isset($trace[$i]['file'])) {
+                if ($file !== $trace[$i]['file']) {
+                    $file = $trace[$i]['file'];
+                }
+            }
+        }
+
+        return $file;
     }
 }

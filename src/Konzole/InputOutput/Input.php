@@ -32,6 +32,34 @@ class Input
     }
 
     /**
+     * Retrieve passed command
+     * @return string
+     */
+    public function getCommand(): string
+    {
+        return $this->command;
+    }
+
+    /**
+     * Retrieve list of passed params
+     * @return array
+     */
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
+    /**
+     * Check if param was passed
+     * @param string $paramName parameter being searched for
+     * @return bool
+     */
+    public function hasParam(string $paramName): bool
+    {
+        return array_key_exists($paramName, $this->params);
+    }
+
+    /**
      * Parse params into associative array
      * @param array $params params passed from CLI
      * @return void
@@ -99,34 +127,5 @@ class Input
         }
 
         return $valid;
-    }
-
-
-    /**
-     * Retrieve passed command
-     * @return string
-     */
-    public function getCommand(): string
-    {
-        return $this->command;
-    }
-
-    /**
-     * Retrieve list of passed params
-     * @return array
-     */
-    public function getParams(): array
-    {
-        return $this->params;
-    }
-
-    /**
-     * Check if param was passed
-     * @param string $paramName parameter being searched for
-     * @return bool
-     */
-    public function hasParam(string $paramName): bool
-    {
-        return array_key_exists($paramName, $this->params);
     }
 }
